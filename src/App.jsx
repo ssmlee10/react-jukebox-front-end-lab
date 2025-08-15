@@ -8,8 +8,15 @@ const App = () => {
   useEffect(() => {
 
   const fetchTracks = async () => {
+    try {
     const fetchedTracks = await trackServices.index();
+    if (fetchedPets.err) {
+      throw new Error(fetchedPets.err);
+    }
     setTracks(fetchedTracks);
+  } catch(err) {
+    console.log(err);
+  }
 
   };
 
