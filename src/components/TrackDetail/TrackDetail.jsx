@@ -1,0 +1,22 @@
+const TrackDetail = (props) => {
+console.log(props.selected);
+    // if no track is selected
+    if (!props.selected) {
+        return (
+            <div>
+                <h2>No Details.</h2>
+            </div>
+        )
+    }
+
+    // if track is selected
+    return (
+        <div>
+            <h2>Title: {props.selected.title}</h2>
+            <h2>Artist: {props.selected.artist}</h2>
+        </div>
+    )
+
+};
+
+export default TrackDetail;
