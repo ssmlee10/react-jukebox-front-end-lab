@@ -18,25 +18,34 @@ const index = async () => {
 // console.log(await index());
 
 const create = async (formData) => {
-try {
-  const res = await fetch(BASE_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(formData),
-  });
+  try {
+    const res = await fetch(BASE_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
 
-  return res.json();
-
-} catch(err) {
-  console.log(err);
-}
-
-}
-
-
-export {
-    index,
-    create,
+    return res.json();
+  } catch (err) {
+    console.log(err);
+  }
 };
+
+const update = async (formData, id) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    return res.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { index, create, update };
