@@ -43,7 +43,16 @@ const App = () => {
   const handleAddTrack = async (formData) => {
     try {
       const newTrack = await trackServices.create(formData);
-      console.log(newTrack);
+      
+      if (newTrack.err) {
+        throw new Error(newTrack.err);
+      }
+      // updating state of tracks, adding newTrack to tracks array
+      // tracks array is the whole array of all tracks
+      setTracks([newTrack, ...tracks]);
+      // reset state of isFormOpen after a new track is added
+      // this closes the form
+      setIsFormOpen(false);
     }catch(err) {
       console.log(err);
     }
