@@ -1,8 +1,12 @@
 const TrackList = (props) => {
+
   return (
     <div>
       <h2>Track List</h2>
       <div>
+        {!props.tracks.length ? (
+          <h2>No tracks yet!</h2> 
+        ) : (
         <ul>
           {props.tracks.map((track) => (
             <li
@@ -14,7 +18,11 @@ const TrackList = (props) => {
             </li>
           ))}
         </ul>
+        )}
       </div>
+      <button onClick={props.handleFormView}>
+        {props.isFormOpen ? 'Close Form' : 'New Track' }
+      </button>
     </div>
   );
 };

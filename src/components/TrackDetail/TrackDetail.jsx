@@ -1,5 +1,5 @@
 const TrackDetail = (props) => {
-console.log(props.selected);
+    
     // if no track is selected
     if (!props.selected) {
         return (
