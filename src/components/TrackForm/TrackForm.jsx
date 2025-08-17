@@ -1,10 +1,18 @@
 import { useState } from 'react';
 
 const TrackForm = (props) => {
-    const [formData, setFormData] = useState({
+
+    const initialState = {
         title: '',
         artist: '',
-    });
+    };
+
+    // turnary: if there is a truthy value for props.selected, that will be what is in our form data
+    // selected will be what's edited
+    // otherwise it will be the initial state
+    const [formData, setFormData] = useState(
+        props.selected ? props.selected : initialState
+    );
 
     const handleChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value});
@@ -34,7 +42,9 @@ const TrackForm = (props) => {
                 value={formData.artist}
                 onChange={handleChange}
                 required />
-                <button type="submit">Add New Track</button>
+                <button type="submit">
+                    { props.selected ? 'Update Track' : 'Add Track'}
+                    </button>
             </form>
         </div>
     )

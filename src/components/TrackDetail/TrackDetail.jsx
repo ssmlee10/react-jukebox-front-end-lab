@@ -14,6 +14,11 @@ const TrackDetail = (props) => {
         <div>
             <h2>Title: {props.selected.title}</h2>
             <h2>Artist: {props.selected.artist}</h2>
+            <div>
+                <button onClick={() => props.handleFormView(props.selected)}>
+                Edit Track
+                </button>
+            </div>
         </div>
     )
 

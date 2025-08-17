@@ -35,8 +35,9 @@ const App = () => {
     setIsFormOpen(false);
   };
 
-  const handleFormView = () => {
-    // flips to opposite
+  const handleFormView = (track) => {
+    if (!track._id) setSelected(null);
+    // flips to opposite, this shows the form
     setIsFormOpen(!isFormOpen);
   }
 
@@ -58,6 +59,9 @@ const App = () => {
     }
   }
 
+
+  
+
   return (
     <>
       <h1>Jukebox</h1>
@@ -67,9 +71,13 @@ const App = () => {
       handleFormView={handleFormView}
       isFormOpen={isFormOpen} />
       {isFormOpen ? (
-        <TrackForm handleAddTrack={handleAddTrack} />
+        <TrackForm 
+        handleAddTrack={handleAddTrack} 
+        selected={selected}/>
       ) : (
-        <TrackDetail selected={selected}/>
+        <TrackDetail 
+        selected={selected}
+        handleFormView={handleFormView}/>
       )}
     </>
   );
