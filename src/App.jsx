@@ -48,11 +48,8 @@ const App = () => {
         throw new Error(newTrack.err);
       }
     
-      // updating state of tracks, adding newTrack to tracks array
-      // tracks array is the whole array of all tracks
       setTracks([newTrack, ...tracks]);
-      // reset state of isFormOpen after a new track is added
-      // this closes the form
+
       setIsFormOpen(false);
     } catch (err) {
       console.log(err);
@@ -78,6 +75,21 @@ const App = () => {
     }
   };
 
+  const handleDeleteTrack = async (id) => {
+    try {
+      const deletedTrack = await trackServices.deleteTrack(id);
+      console.log(deletedTrack);
+
+      if (deletedPet.err) {
+        throw new Err (deletedTrack.err);
+      }
+
+      setTracks(tracks.filter((track) => track._id !== deletedTrack._id));
+    } catch(err) {
+      console.log(err);
+    }
+  }
+
   return (
     <>
       <h1>Jukebox</h1>
@@ -94,7 +106,10 @@ const App = () => {
           handleUpdateTrack={handleUpdateTrack}
         />
       ) : (
-        <TrackDetail selected={selected} handleFormView={handleFormView} />
+        <TrackDetail
+        selected={selected}
+        handleFormView={handleFormView}
+        handleDeleteTrack={handleDeleteTrack}/>
       )}
     </>
   );
