@@ -1,6 +1,7 @@
 import "./App.css";
 import * as trackServices from "./services/trackService.js";
 import TrackList from "./components/TrackList/TrackList.jsx";
+import NowPlaying from "./components/NowPlaying/NowPlaying.jsx";
 import TrackDetail from "./components/TrackDetail/TrackDetail.jsx";
 import TrackForm from "./components/TrackForm/TrackForm.jsx";
 import { useState, useEffect } from "react";
@@ -64,10 +65,11 @@ const App = () => {
       }
 
       const updatedTrackList = tracks.map((track) => {
-        track._id !== updatedTrack._id ? track : updatedTrack
+        return track._id !== updatedTrack._id ? track : updatedTrack
       });
 
-      setSelected(updatedTrackList);
+      setTracks(updatedTrackList);
+      setSelected(null);
       setIsFormOpen(false);
 
     } catch (err) {
@@ -99,6 +101,7 @@ const App = () => {
         handleFormView={handleFormView}
         isFormOpen={isFormOpen}
       />
+      <NowPlaying />
       {isFormOpen ? (
         <TrackForm
           handleAddTrack={handleAddTrack}

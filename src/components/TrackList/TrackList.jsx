@@ -23,6 +23,7 @@ const TrackList = (props) => {
       <button onClick={props.handleFormView}>
         {props.isFormOpen ? 'Close Form' : 'New Track' }
       </button>
+      <button>Now Playing</button>
     </div>
   );
 };
