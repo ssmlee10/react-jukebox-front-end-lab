@@ -30,6 +30,7 @@ const TrackForm = (props) => {
 
   return (
     <div>
+      <h2>Edit Track</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
         <input

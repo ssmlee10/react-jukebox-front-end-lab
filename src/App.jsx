@@ -82,7 +82,7 @@ const App = () => {
       const deletedTrack = await trackServices.deleteTrack(id);
       console.log(deletedTrack);
 
-      if (deletedPet.err) {
+      if (deletedTrack.err) {
         throw new Err (deletedTrack.err);
       }
 
@@ -92,6 +92,11 @@ const App = () => {
     }
   }
 
+  const handlePlayButton = (track) => {
+    setSelected(track);
+    setIsFormOpen(false);
+  };
+
   return (
     <>
       <h1>Jukebox</h1>
@@ -100,8 +105,10 @@ const App = () => {
         handleSelect={handleSelect}
         handleFormView={handleFormView}
         isFormOpen={isFormOpen}
+        handleDeleteTrack={handleDeleteTrack}
+        handlePlayButton={handlePlayButton}
+        handleUpdateTrack={handleUpdateTrack}
       />
-      <NowPlaying />
       {isFormOpen ? (
         <TrackForm
           handleAddTrack={handleAddTrack}
@@ -109,10 +116,9 @@ const App = () => {
           handleUpdateTrack={handleUpdateTrack}
         />
       ) : (
-        <TrackDetail
-        selected={selected}
-        handleFormView={handleFormView}
-        handleDeleteTrack={handleDeleteTrack}/>
+        <div>
+          {selected && <NowPlaying track={selected} />}
+        </div>
       )}
     </>
   );
