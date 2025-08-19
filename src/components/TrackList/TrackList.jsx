@@ -2,6 +2,9 @@ const TrackList = (props) => {
   return (
     <>
       <div>
+        <button onClick={props.handleFormView}>
+          {props.isFormOpen ? "Close Form" : "New Track"}
+        </button>
         <h2>Track List</h2>
         <div>
           {!props.tracks.length ? (
@@ -13,21 +16,29 @@ const TrackList = (props) => {
                   <li>
                     {track.title} - {track.artist}
                   </li>
-                  <button onClick={() => {props.handlePlayButton(track)}}>
+                  <button
+                    onClick={() => {
+                      props.handlePlayButton(track);
+                    }}
+                  >
                     Play
                   </button>
-                  <button onClick={() => {props.handleSelect(track); props.handleFormView(track)}}>
+                  <button
+                    onClick={() => {
+                      props.handleSelect(track);
+                      props.handleFormView(track);
+                    }}
+                  >
                     Edit
                   </button>
-                  <button onClick={() => props.handleDeleteTrack(track._id)}>Delete</button>
+                  <button onClick={() => props.handleDeleteTrack(track._id)}>
+                    Delete
+                  </button>
                 </div>
               ))}
             </ul>
           )}
         </div>
-        <button onClick={props.handleFormView}>
-          {props.isFormOpen ? "Close Form" : "New Track"}
-        </button>
       </div>
     </>
   );
